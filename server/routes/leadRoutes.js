@@ -1,5 +1,6 @@
 const express = require("express");
 const scrapeWebsite = require("../services/scraper");
+const generateAuditReport = require("../services/gemini");
 
 const router = express.Router();
 
@@ -15,12 +16,16 @@ router.post("/", async (req, res) => {
 
     const scrapedData = await scrapeWebsite(website);
 
+    const aiReport = await generateAuditReport(scrapedData);
+
+    console.log(aiReport);
+
     console.log(scrapedData);
 
     res.status(200).json({
-      message: "Lead submitted successfully",
-      scrapedData,
-    });
+  message: "Lead submitted successfully",
+  aiReport,
+});
   } catch (error) {
     console.log(error);
 
