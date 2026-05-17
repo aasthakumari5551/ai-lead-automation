@@ -13,7 +13,7 @@ const generatePDF = async (companyName, reportContent) => {
       .replace(/^## (.*$)/gim, "<h2>$1</h2>")
       .replace(/^### (.*$)/gim, "<h3>$1</h3>")
       .replace(/\n\n/g, "</p><p>")
-      .replace(/\n/g, "<br/>");
+      .replace(/\n/g, "</p><p>");
 
     const htmlContent = `
       <html>
@@ -105,8 +105,8 @@ const generatePDF = async (companyName, reportContent) => {
             </div>
 
             <div class="report-content">
-              <p>${formattedContent}</p>
-            </div>
+  ${formattedContent}
+</div>
 
             <div class="footer">
               Generated automatically using AI-powered company analysis.

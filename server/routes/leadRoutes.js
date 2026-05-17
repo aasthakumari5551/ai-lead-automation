@@ -3,6 +3,7 @@ const scrapeWebsite = require("../services/scraper");
 const generateAuditReport = require("../services/gemini");
 const generatePDF = require("../services/pdf");
 const sendEmail = require("../services/mail");
+const appendToSheet = require("../services/sheets");
 
 const router = express.Router();
 
@@ -23,6 +24,14 @@ router.post("/", async (req, res) => {
     const pdfPath = await generatePDF(company, aiReport);
 
     await sendEmail(email, company, pdfPath);
+
+    await appendToSheet(
+  name,
+  email,
+  company,
+  website,
+  "Report Sent"
+);
 
     console.log("PDF Generated:", pdfPath);
 
