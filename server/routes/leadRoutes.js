@@ -2,6 +2,7 @@ const express = require("express");
 const scrapeWebsite = require("../services/scraper");
 const generateAuditReport = require("../services/gemini");
 const generatePDF = require("../services/pdf");
+const sendEmail = require("../services/mail");
 
 const router = express.Router();
 
@@ -20,6 +21,8 @@ router.post("/", async (req, res) => {
     const aiReport = await generateAuditReport(scrapedData);
 
     const pdfPath = await generatePDF(company, aiReport);
+
+    await sendEmail(email, company, pdfPath);
 
     console.log("PDF Generated:", pdfPath);
 
