@@ -1,0 +1,9 @@
+Reflection
+
+This project helped me understand how modern AI-powered automation systems work in real business workflows. I implemented an end-to-end automation pipeline that captures lead information, enriches company data through website scraping, generates personalized AI business audit reports, converts them into professional PDFs, sends them automatically through email, and logs lead activity into Google Sheets.
+
+One of the biggest challenges was handling AI API limitations and quota issues while integrating external services. I learned how to implement fallback handling and debug API integrations effectively. Another important learning experience was managing sensitive credentials securely and understanding GitHub push protection mechanisms.
+
+If I had more time, I would improve the frontend UI, add authentication, create more advanced AI prompts, and integrate a proper database and CRM system.
+
+Overall, this project improved my understanding of backend workflows, API integrations, automation systems, and production-oriented problem solving.
