@@ -1,6 +1,7 @@
 const express = require("express");
 const scrapeWebsite = require("../services/scraper");
 const generateAuditReport = require("../services/gemini");
+const generatePDF = require("../services/pdf");
 
 const router = express.Router();
 
@@ -18,6 +19,10 @@ router.post("/", async (req, res) => {
 
     const aiReport = await generateAuditReport(scrapedData);
 
+    const pdfPath = await generatePDF(company, aiReport);
+
+    console.log("PDF Generated:", pdfPath);
+
     console.log(aiReport);
 
     console.log(scrapedData);
@@ -25,6 +30,7 @@ router.post("/", async (req, res) => {
     res.status(200).json({
   message: "Lead submitted successfully",
   aiReport,
+  pdfPath,
 });
   } catch (error) {
     console.log(error);
